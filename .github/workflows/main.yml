@@ -21,4 +21,11 @@ jobs:
         path: |
           path/to/dependencies
           some/other/dependencies
-        key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+          ${{ steps.npm-cache-dir.outputs.dir }}
+        key: |
+            ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+            ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node
+          
+    
