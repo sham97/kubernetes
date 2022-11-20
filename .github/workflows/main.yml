@@ -16,9 +16,9 @@ jobs:
         path: prime-numbers
         key: ${{ runner.os }}-primes
 
-    - name: Generate Prime Numbers
-      if: steps.cache-primes.outputs.cache-hit != 'true'
-      run: sh /generate-primes.sh -d prime-numbers
-
-    - name: Use Prime Numbers
-      run: sh /primes.sh -d prime-numbers
+    - uses: actions/cache@v4
+      with:
+        path: |
+          path/to/dependencies
+          some/other/dependencies
+        key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
